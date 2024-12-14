@@ -15,3 +15,5 @@ export interface PokemonDetails {
 }
 
 export type PokemonTeam = Array<Pokemon>;
+
+export {};

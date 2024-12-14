@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { PokemonTeam } from "@/types"; 
 
 export const usePokemonStore = defineStore("pokemon", {
   state: () => ({
-    pokemons: [] as Array<{ id: number; name: string; url: string; image: string; isInTeam: boolean }>,
+    pokemons: [] as PokemonTeam,
     teamLimit: null as number | null, 
   }),
   actions: {

@@ -1,7 +1,13 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
+  "compilerOptions": {
+   "lib": ["DOM", "ES2015"],
+    "baseUrl": ".", 
+    "paths": {
+      "@/*": ["src/*"], 
+      "@/stores/*": ["src/stores/*"], 
+      "@types": ["src/types"] 
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": ["node_modules"]
 }

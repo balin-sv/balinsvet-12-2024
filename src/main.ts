@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import router from './router/index.ts'
+import router from './router/index'
 import './index.css'
 import App from './App.vue'
 
