@@ -1,6 +1,8 @@
 export interface Pokemon {
   name: string;
-  url: string; 
+  url: string;
+  image: string;
+  isInTeam?: boolean; 
 }
 
 export interface PokemonDetails {

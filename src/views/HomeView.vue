@@ -1,16 +1,27 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-b from-black to-yellow-500 text-white p-6 flex flex-col"
+    class="min-h-screen bg-gradient-to-b from-black to-yellow-500 py-6 text-white flex flex-col"
   >
-    <h1
-      class="text-5xl font-extrabold text-center py-4 mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-700 animate-gradient"
+    <div
+      class="sticky top-0 z-10 bg-black bg-opacity-80 py-4 px-6 flex justify-between items-center shadow-md"
     >
-      ¡Elige a los Pokémon!
-    </h1>
+      <h1
+        class="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-700 animate-gradient"
+      >
+        Pokemon
+      </h1>
+
+      <router-link
+        to="/team"
+        class="px-4 py-2 bg-yellow-600 text-black font-bold rounded-full hover:bg-yellow-500 transition duration-300"
+      >
+        Ver equipo
+      </router-link>
+    </div>
 
     <div class="flex-grow overflow-hidden mb-16">
       <div
-        class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 min-h-[400px] mt-10"
+        class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 min-h-[400px] mt-10 px-2"
       >
         <div
           v-for="pokemon in paginatedPokemons"
@@ -29,16 +40,24 @@
               {{ pokemon.name }}
             </h3>
             <button
+              v-if="!pokemon.isInTeam"
+              @click="addPokemonToTeam(pokemon.id)"
               class="mt-2 px-2 py-1 bg-yellow-600 text-black font-bold rounded-full hover:bg-yellow-500 transition duration-300"
             >
               Añadir al equipo
+            </button>
+            <button
+              v-else
+              @click="deletePokemonFromTeam(pokemon.id)"
+              class="mt-2 px-2 py-1 bg-red-600 text-black font-bold rounded-full hover:bg-red-500 transition duration-300"
+            >
+              Quitar del equipo
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Пагинация -->
     <div
       class="fixed bottom-0 left-0 w-full bg-black py-4 flex justify-center items-center space-x-4"
     >
@@ -71,7 +90,7 @@ import { usePokemonStore } from "@/stores/pokemonStore";
 import { storeToRefs } from "pinia";
 
 const pokemonStore = usePokemonStore();
-const { pokemons } = storeToRefs(pokemonStore);
+const { pokemons, teamLimit } = storeToRefs(pokemonStore);
 
 const limit = 25;
 const currentPage = ref(1);
@@ -94,9 +113,25 @@ const nextPage = () => {
   }
 };
 
+const addPokemonToTeam = (id: number) => {
+  if (teamLimit.value === 6) {
+    alert("No puedes tener más de 6 pokemons en tu equipo");
+    return;
+  } else {
+    teamLimit.value++;
+    pokemonStore.addToTeam(id);
+  }
+};
+
+const deletePokemonFromTeam = (id: number) => {
+  teamLimit.value--;
+  pokemonStore.deleteFromTeam(id);
+};
+
 onMounted(async () => {
   if (pokemons.value.length === 0) {
     await pokemonStore.fetchPokemons();
   }
+  console.log(pokemons.value);
 });
 </script>
