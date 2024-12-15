@@ -1,8 +1,15 @@
-export interface Pokemon {
-  name: string;
-  url: string;
-  image: string;
-  isInTeam?: boolean; 
+import { types } from "util";
+
+interface Pokemon {
+  name: string
+  sprites: {
+    front_default: string
+  }
+  types: { type: { name: string } }[]
+  stats: { stat: { name: string }; base_stat: number }[]
+  cries: {
+    latest: string
+  }
 }
 
 export interface PokemonDetails {
@@ -15,5 +22,10 @@ export interface PokemonDetails {
 }
 
 export type PokemonTeam = Array<Pokemon>;
+
+export interface Stat {
+  base_stat: number;
+  stat: { name: string };
+}
 
 export {};

@@ -33,12 +33,9 @@ export const usePokemonStore = defineStore("pokemon", {
           name: pokemon.name,
           url: pokemon.url,
           image: details.data.sprites.front_default, 
-          types: details.data.types.map((typeObj: any) => typeObj.type.name),
-          stats: details.data.stats.map((statObj: any) => ({
-            name: statObj.stat.name,
-            value: statObj.base_stat,
-          })), 
-          cry: details.data.cries.latest,
+          types: details.data.types,
+          stats: details.data.stats,
+          cry: details.data.cries,
           isInTeam: false, 
         };
       })
