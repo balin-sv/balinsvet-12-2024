@@ -1,15 +1,15 @@
 # Nombre de la aplicación: Pokédex Application
 
 ### **Enlace al sitio:**  
-[Pokédex Application](https://675e6e9aefc0ae0afce8d034--taupe-snickerdoodle-be80a3.netlify.app/)
+[Pokédex Application](https://balinsvet-12-2024.netlify.app/)
 
 ## Descripción del proyecto:
 **Pokédex Application** es una aplicación web diseñada para mostrar una lista de Pokémon, sus características y la funcionalidad de gestión de equipo. La aplicación permite al usuario explorar información sobre los Pokémon, añadirlos a su equipo y consultar detalles específicos de cada Pokémon.
 
 ---
 
-![Página principal](1.jpg)
-![Página detalles](2.jpg)
+![Página principal](1.png)
+![Página detalles](2.png)
 
 ## **Funciones principales:**
 
