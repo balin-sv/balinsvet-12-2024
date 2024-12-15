@@ -1,18 +1,32 @@
 export interface Pokemon {
   id: number; 
   name: string; 
-  url?: string; 
   image: string; 
-  sprites: { front_default: string }; 
-  types: { type: { name: string } }[]; 
-  stats: { stat: { name: string }; base_stat: number }[]; 
-  cry: { latest: string }; 
-  cries: { latest: string }; 
   isInTeam: boolean; 
-  weight?: number; 
-  height?: number; 
-  description?: string; 
-  evolutionChain?: EvolutionStage[];
+  types: { type: { name: string } }[]; 
+  stats: { 
+    stat: { name: string }; 
+    base_stat: number; 
+  }[];
+  cry: { latest: string }; 
+}
+
+export interface PokemonDetails {
+  name: string; 
+  sprites: { front_default: string }; 
+  types: { type: { name: string } }[];
+  cries: { latest: string }; 
+  height: number; 
+  weight: number; 
+  description: string; 
+  stats: { 
+    stat: { name: string }; 
+    base_stat: number; 
+  }[];
+  evolutionChain?: { 
+    name: string; 
+    image: string; 
+  }[];
 }
 
 export interface EvolutionStage {

@@ -18,7 +18,7 @@
     </div>
 
     <div class="flex flex-col gap-4">
-      <h2 class="text-4xl font-bold capitalize text-yellow-300">
+      <h2 class="text-2xl md:text-4xl font-bold capitalize text-yellow-300">
         {{ pokemon.name }}
       </h2>
       <p class="text-lg text-gray-300">
@@ -35,7 +35,9 @@
     </div>
 
     <div v-if="pokemon.evolutionChain?.length > 0" class="flex flex-col gap-4">
-      <h3 class="text-3xl text-yellow-300 font-bold">Cadena Evolutiva:</h3>
+      <h3 class="text-2xl md:text-3xl text-yellow-300 font-bold">
+        Cadena Evolutiva:
+      </h3>
       <div class="flex gap-4 flex-wrap justify-center">
         <div
           v-for="stage in pokemon.evolutionChain"

@@ -1,8 +1,9 @@
 <template>
   <MainLayout>
     <AppNavbar>
-      Detalles de Pokémon
+      Detalles
       <template #button>
+        <AppNavbarBtn link="/">Al Pokédex</AppNavbarBtn>
         <AppNavbarBtn link="/team">Ver Equipo</AppNavbarBtn>
       </template>
     </AppNavbar>
@@ -31,13 +32,13 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 import StatsChart from '@/components/StatsChart.vue'
 import LoadingOverlay from '@/components/LoadingOverlay.vue'
-import MainLayout from '@/components/MainLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 import AppNavbar from '@/components/AppNavbar.vue'
 import AppNavbarBtn from '@/components/AppNavbarBtn.vue'
 import PokemonDetailCard from '@/components/PokemonDetailCard.vue'
-import { EvolutionStage, Pokemon } from '@/types'
+import { EvolutionStage, PokemonDetails } from '@/types'
 
-const pokemon = ref<Pokemon | null>(null)
+const pokemon = ref<PokemonDetails | null>(null)
 const route = useRoute()
 const pokemonId = route.params.id
 

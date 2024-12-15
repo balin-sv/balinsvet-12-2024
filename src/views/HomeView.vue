@@ -1,12 +1,11 @@
 <template>
   <MainLayout>
     <AppNavbar>
-      Pokédex
+      Pokédex {{ !teamLimit ? '' : teamLimit }}
       <template #button>
         <AppNavbarBtn link="/team">Ver Equipo</AppNavbarBtn>
       </template>
     </AppNavbar>
-
     <div class="flex-grow overflow-hidden mb-16">
       <div
         class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 min-h-[400px] mt-10 px-2"
@@ -20,30 +19,13 @@
         ></PokemonCard>
       </div>
     </div>
-
-    <div
-      class="fixed bottom-0 left-0 w-full bg-black py-4 flex justify-center items-center space-x-4"
-    >
-      <button
-        @click="prevPage"
-        :disabled="!pokemons || pokemons.length === 0 || currentPage === 1"
-        class="px-4 py-2 bg-gray-700 text-white font-bold rounded-full hover:bg-gray-600 disabled:opacity-50 transition duration-300"
-      >
-        ◀
-      </button>
-      <span class="text-lg font-extrabold text-yellow-300 drop-shadow-lg">
-        Página {{ currentPage }} de {{ maxPages }}
-      </span>
-      <button
-        @click="nextPage"
-        :disabled="
-          !pokemons || pokemons.length === 0 || currentPage === maxPages
-        "
-        class="px-4 py-2 bg-gray-700 text-white font-bold rounded-full hover:bg-gray-600 disabled:opacity-50 transition duration-300"
-      >
-        ▶
-      </button>
-    </div>
+    <AppPaginator
+      :currentPage="currentPage"
+      :maxPages="maxPages"
+      :totalItems="pokemons.length"
+      :onPrev="prevPage"
+      :onNext="nextPage"
+    />
   </MainLayout>
 </template>
 
@@ -51,10 +33,11 @@
 import { onMounted, ref, computed } from 'vue'
 import { usePokemonStore } from '@/stores/pokemonStore'
 import { storeToRefs } from 'pinia'
-import MainLayout from '@/components/MainLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 import AppNavbar from '@/components/AppNavbar.vue'
 import AppNavbarBtn from '@/components/AppNavbarBtn.vue'
 import PokemonCard from '@/components/PokemonCard.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const pokemonStore = usePokemonStore()
 const { pokemons, teamLimit } = storeToRefs(pokemonStore)
