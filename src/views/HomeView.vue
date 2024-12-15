@@ -35,23 +35,28 @@
               class="w-40 h-40 mx-auto object-fit transform hover:scale-110 transition duration-300"
             />
           </div>
-          <div class="p-3 text-center">
-            <h3 class="text-sm font-bold text-yellow-300 capitalize">
+          <div class="pb-5 text-center">
+            <h2
+              class="text-lg font-semibold capitalize text-yellow-300 text-center mb-5"
+            >
               {{ pokemon.name }}
-            </h3>
+            </h2>
             <button
               v-if="!pokemon.isInTeam"
               @click="addPokemonToTeam(pokemon.id)"
-              class="mt-2 px-2 py-1 bg-yellow-600 text-black font-bold rounded-full hover:bg-yellow-500 transition duration-300"
+              class="f space-x-2 px-4 py-2 bg-yellow-600 text-black font-semibold text-sm rounded-full hover:bg-yellow-500 transition duration-300 shadow-md w-32"
             >
-              Añadir al equipo
+              <i class="fas fa-user-plus"></i>
+              <span>Añadir</span>
             </button>
+
             <button
               v-else
               @click="deletePokemonFromTeam(pokemon.id)"
-              class="mt-2 px-2 py-1 bg-red-600 text-black font-bold rounded-full hover:bg-red-500 transition duration-300"
+              class="space-x-2 px-4 py-2 bg-red-700 text-white font-semibold text-sm rounded-full hover:bg-red-600 transition duration-300 shadow-md w-32"
             >
-              Quitar del equipo
+              <i class="fas fa-trash-alt"></i>
+              <span>Eliminar</span>
             </button>
           </div>
         </div>
@@ -85,53 +90,53 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from "vue";
-import { usePokemonStore } from "@/stores/pokemonStore";
-import { storeToRefs } from "pinia";
+import { onMounted, ref, computed } from 'vue'
+import { usePokemonStore } from '@/stores/pokemonStore'
+import { storeToRefs } from 'pinia'
 
-const pokemonStore = usePokemonStore();
-const { pokemons, teamLimit } = storeToRefs(pokemonStore);
+const pokemonStore = usePokemonStore()
+const { pokemons, teamLimit } = storeToRefs(pokemonStore)
 
-const limit = 25;
-const currentPage = ref(1);
-const maxPages = computed(() => Math.ceil(pokemons.value.length / limit));
+const limit = 25
+const currentPage = ref(1)
+const maxPages = computed(() => Math.ceil(pokemons.value.length / limit))
 const paginatedPokemons = computed(() => {
-  const start = (currentPage.value - 1) * limit;
-  const end = start + limit;
-  return pokemons.value.slice(start, end);
-});
+  const start = (currentPage.value - 1) * limit
+  const end = start + limit
+  return pokemons.value.slice(start, end)
+})
 
 const prevPage = () => {
   if (currentPage.value > 1) {
-    currentPage.value--;
+    currentPage.value--
   }
-};
+}
 
 const nextPage = () => {
   if (currentPage.value < maxPages.value) {
-    currentPage.value++;
+    currentPage.value++
   }
-};
+}
 
 const addPokemonToTeam = (id: number) => {
   if (teamLimit.value === 6) {
-    alert("No puedes tener más de 6 pokemons en tu equipo");
-    return;
+    alert('No puedes tener más de 6 pokemons en tu equipo')
+    return
   } else {
-    teamLimit.value++;
-    pokemonStore.addToTeam(id);
+    teamLimit.value++
+    pokemonStore.addToTeam(id)
   }
-};
+}
 
 const deletePokemonFromTeam = (id: number) => {
-  teamLimit.value--;
-  pokemonStore.deleteFromTeam(id);
-};
+  teamLimit.value--
+  pokemonStore.deleteFromTeam(id)
+}
 
 onMounted(async () => {
   if (pokemons.value.length === 0) {
-    await pokemonStore.fetchPokemons();
+    await pokemonStore.fetchPokemons()
   }
-  console.log(pokemons.value);
-});
+  console.log(pokemons.value)
+})
 </script>
