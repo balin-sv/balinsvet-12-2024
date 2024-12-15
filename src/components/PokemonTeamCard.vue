@@ -31,7 +31,7 @@
         <button
           v-if="pokemon.isInTeam"
           @click="removeFromTeam"
-          class="flex items-center space-x-2 px-4 py-2 bg-red-700 text-white font-bold rounded-full hover:bg-red-600 transition duration-300 shadow-md"
+          class="flex items-center space-x-2 px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base bg-red-700 text-white font-bold rounded-md sm:rounded-full hover:bg-red-600 transition duration-300 shadow-md"
         >
           <i class="fas fa-trash-alt"></i>
           <span>Eliminar</span>
@@ -39,7 +39,7 @@
 
         <router-link
           :to="{ name: 'TeamMember', params: { id: pokemon.id } }"
-          class="px-4 py-2 bg-yellow-600 font-bold text-black rounded-full hover:bg-yellow-500 transition duration-300"
+          class="px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base bg-yellow-600 font-bold text-black rounded-md sm:rounded-full hover:bg-yellow-500 transition duration-300"
         >
           Detalles
         </router-link>
