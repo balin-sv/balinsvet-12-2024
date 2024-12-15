@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
+    "noEmit": true, 
+  
+"allowImportingTsExtensions": true, 
+ "esModuleInterop": true, 
+"allowSyntheticDefaultImports": true, 
+ "allowJs": true, "checkJs": false, 
+
+  
+  
+"moduleResolution": "node",
    "lib": ["DOM", "ES2015"],
     "baseUrl": ".", 
     "paths": {

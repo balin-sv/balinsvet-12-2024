@@ -6,7 +6,9 @@
         <AppNavbarBtn link="/team">Ver Equipo</AppNavbarBtn>
       </template>
     </AppNavbar>
+
     <div class="flex-grow overflow-hidden mb-16">
+      <LoadingOverlay v-if="!pokemons" />
       <div
         class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 min-h-[400px] mt-10 px-2"
       >
@@ -38,6 +40,7 @@ import AppNavbar from '@/components/AppNavbar.vue'
 import AppNavbarBtn from '@/components/AppNavbarBtn.vue'
 import PokemonCard from '@/components/PokemonCard.vue'
 import AppPaginator from '@/components/AppPaginator.vue'
+import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
 const pokemonStore = usePokemonStore()
 const { pokemons, teamLimit } = storeToRefs(pokemonStore)
