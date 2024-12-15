@@ -8,6 +8,9 @@
 
 ---
 
+![Página principal](1.jpg)
+![Página detalles](2.jpg)
+
 ## **Funciones principales:**
 
 ### **Página principal:**

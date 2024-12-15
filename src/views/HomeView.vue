@@ -6,9 +6,8 @@
         <AppNavbarBtn link="/team">Ver Equipo</AppNavbarBtn>
       </template>
     </AppNavbar>
-
     <div class="flex-grow overflow-hidden mb-16">
-      <LoadingOverlay v-if="!pokemons" />
+      <LoadingOverlay v-if="isLoading" />
       <div
         class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 min-h-[400px] mt-10 px-2"
       >
@@ -44,6 +43,7 @@ import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
 const pokemonStore = usePokemonStore()
 const { pokemons, teamLimit } = storeToRefs(pokemonStore)
+const isLoading = ref(true)
 
 const limit = 25
 const currentPage = ref(1)
@@ -83,7 +83,11 @@ const deletePokemonFromTeam = (id: number) => {
 
 onMounted(async () => {
   if (pokemons.value.length === 0) {
+    isLoading.value = true
     await pokemonStore.fetchPokemons()
+    isLoading.value = false
+  } else {
+    isLoading.value = false
   }
 })
 </script>
