@@ -2,7 +2,6 @@
   <div
     class="min-h-screen bg-gradient-to-b from-black to-yellow-500 py-6 text-white flex flex-col items-center"
   >
-    <!-- Header -->
     <div
       class="sticky top-0 z-10 bg-black bg-opacity-80 py-4 px-6 w-full flex justify-between items-center shadow-md"
     >
@@ -19,19 +18,15 @@
       </router-link>
     </div>
 
-    <!-- Loading Overlay -->
     <LoadingOverlay v-if="!pokemon" />
 
-    <!-- Main Content -->
     <div
       class="container mx-auto mt-6 flex flex-col lg:flex-row gap-8 items-stretch"
     >
-      <!-- Левая колонка -->
       <div
         v-if="pokemon"
         class="flex-1 bg-gray-800 p-6 rounded-lg shadow-lg border-4 border-yellow-500 flex flex-col gap-6"
       >
-        <!-- Pokemon Image -->
         <div class="relative flex justify-center">
           <img
             :src="pokemon.sprites.front_default"
@@ -46,7 +41,6 @@
           </button>
         </div>
 
-        <!-- Pokemon Details -->
         <div class="flex flex-col gap-4">
           <h2 class="text-4xl font-bold capitalize text-yellow-300">
             {{ pokemon.name }}
@@ -66,7 +60,6 @@
           </p>
         </div>
 
-        <!-- Evolution Chain -->
         <div
           v-if="pokemon.evolutionChain?.length > 0"
           class="flex flex-col gap-4"
@@ -94,8 +87,6 @@
           <p>No evolution chain available for this Pokémon.</p>
         </div>
       </div>
-
-      <!-- Правая колонка -->
       <div
         v-if="pokemon?.stats"
         class="flex-1 bg-gray-800 p-6 rounded-lg shadow-lg border-4 border-yellow-500 flex items-end"

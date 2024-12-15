@@ -1,4 +1,3 @@
-import { types } from "util";
 
 interface Pokemon {
   name: string
